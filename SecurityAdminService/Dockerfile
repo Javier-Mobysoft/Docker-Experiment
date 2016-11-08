@@ -11,7 +11,7 @@ RUN echo 'spring.datasource.port=3306' >> /usr/local/tomcat/conf/catalina.proper
 RUN echo 'spring.datasource.username=authUser' >> /usr/local/tomcat/conf/catalina.properties
 RUN echo 'spring.datasource.password=authUser' >> /usr/local/tomcat/conf/catalina.properties
 
-RUN echo 'auth.server.location: http://192.168.33.150:9999' >> /usr/local/tomcat/conf/catalina.properties
+RUN echo 'auth.server.location=http://192.168.33.150:9999' >> /usr/local/tomcat/conf/catalina.properties
 
 EXPOSE 8000
 

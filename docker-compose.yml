@@ -20,4 +20,11 @@ securityadminservice:
     - 8001:8000
   links:
    - authenticationservice
+accountmanagement:
+  build: /vagrant/AccountManagement
+  ports:
+    - 9997:8080
+    - 8002:8000
+  links:
+   - authenticationservice
 
