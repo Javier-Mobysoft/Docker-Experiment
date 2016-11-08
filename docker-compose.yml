@@ -1,0 +1,23 @@
+mysql_mybosoft:
+  image: mysql:5.7
+  command: mysqld --sql_mode="STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION"
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+  ports:
+    - 3306:3306
+
+authenticationservice:
+  build: /vagrant/AuthenticationService
+  ports:
+    - 9999:8080
+    - 8000:8000
+  links:
+   - mysql_mybosoft
+securityadminservice:
+  build: /vagrant/SecurityAdminService
+  ports:
+    - 9998:8080
+    - 8001:8000
+  links:
+   - authenticationservice
+

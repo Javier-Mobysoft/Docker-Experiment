@@ -1,0 +1,23 @@
+INSERT IGNORE INTO organisation (identifier, org_type, org_key, display_name) VALUES ('org-6c0ffb22b6', 'ORGANISATION', 'mobysoft', 'Mobysoft');
+INSERT IGNORE INTO application (organisation_id, app_type, app_key, display_name, secret) VALUES ((SELECT id FROM organisation WHERE org_key = 'mobysoft'), 'INTERNAL', 'manual-loader', 'Cerberus Manual Loader', '3599a6fbb136155ca31bd4e18810ed50242714b94a2e183c13fe665db5ab5ef8fb81de28692114e0');
+INSERT IGNORE INTO role (name, display_name) VALUES ('mobysoft-security-admin', 'Mobysoft Security : Admin');
+INSERT IGNORE INTO application_roles (application_id, role_id) select a.id, r.id from application a, role r where a.app_key = 'manual-loader' and r.name = 'mobysoft-security-admin';
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_ACCESS');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_ADMIN_APPLICATIONS');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_ADMIN_AUTHORITIES');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_ADMIN_ORGANISATIONS');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_ADMIN_PRODUCTS');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_ADMIN_ROLES');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_ADMIN_TOKENS');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_ADMIN_USERS');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_READ_APPLICATIONS');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_READ_AUTHORITIES');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_READ_ORGANISATIONS');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_READ_PRODUCTS');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_READ_ROLES');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_READ_TOKENS');
+INSERT IGNORE INTO authority (name) VALUES ('AUTH_SECURITY_READ_USERS');
+INSERT IGNORE INTO role_authority (role_id, authority_id) select r.id, a.id from role r, authority a where r.name = 'mobysoft-security-admin' and a.name like 'AUTH_SECURITY_%';
+
+INSERT IGNORE INTO organisation (identifier, org_type, org_key, display_name) VALUES ('org-6c0ffb22b6', 'ORGANISATION', 'mobysoft', 'Mobysoft');
+INSERT IGNORE INTO application (organisation_id, app_type, app_key, display_name, secret) VALUES ((SELECT id FROM organisation WHERE org_key = 'mobysoft'), 'INTERNAL', 'security-admin', 'Cerberus Security Admin', 'dc5422b3e9aa12ad9967c307fc94cac2fd309db08df758943abcd90c810c8a5590c4f196004a213d');
