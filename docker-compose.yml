@@ -5,26 +5,34 @@ mysql_mybosoft:
     MYSQL_ROOT_PASSWORD: password
   ports:
     - 3306:3306
-
-authenticationservice:
-  build: /vagrant/AuthenticationService
+repository:
+  build: /vagrant/Notifications/repository
   ports:
-    - 9999:8080
+    - 8090:8080
     - 8000:8000
   links:
    - mysql_mybosoft
-securityadminservice:
-  build: /vagrant/SecurityAdminService
+loader:
+  build: /vagrant/Notifications/loader
   ports:
-    - 9998:8080
+    - 8091:8080
     - 8001:8000
   links:
-   - authenticationservice
-accountmanagement:
-  build: /vagrant/AccountManagement
+   - mysql_mybosoft
+   - repository
+exchange:
+  build: /vagrant/Notifications/exchange
   ports:
-    - 9997:8080
+    - 8092:8080
     - 8002:8000
   links:
-   - authenticationservice
-
+    - mysql_mybosoft
+    - repository
+surveys:
+  build: /vagrant/Notifications/surveys
+  ports:
+    - 8093:8080
+    - 8003:8000
+  links:
+    - mysql_mybosoft
+    - repository

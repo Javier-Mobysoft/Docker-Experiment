@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     support.vm.provision :docker
     support.vm.provision :docker_compose, yml: "/vagrant/docker-compose.yml", rebuild: true
 
-    support.vm.provision :shell, path: "vagrant/populate-db.sh", privileged: false
+    # support.vm.provision :shell, path: "vagrant/populate-db.sh", privileged: false
 
 
   end
