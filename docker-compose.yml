@@ -36,3 +36,26 @@ surveys:
   links:
     - mysql_mybosoft
     - repository
+rentsense:
+  build: /vagrant/Legacy/rentsense
+  ports:
+    - 8080:8080
+    - 8004:8000
+  links:
+    - mysql_mybosoft
+irr:
+  build: /vagrant/IRR
+  ports:
+    - 8081:8080
+    - 8005:8000
+  links:
+    - mysql_mybosoft
+    - rentsense
+bi:
+  build: /vagrant/Legacy/bi
+  ports:
+    - 8082:8080
+    - 8006:8000
+  links:
+    - mysql_mybosoft
+    - rentsense
